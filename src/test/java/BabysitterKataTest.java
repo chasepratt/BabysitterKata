@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 public class BabysitterKataTest {
     @Test public void testFindTimeDifference() {
         BabysitterKata classUnderTest = new BabysitterKata();
-        assertEquals(8.5, classUnderTest.findTimeDifference(6, 30, 3, 0), .01F);
+        float[] start = {6F, 30F};
+        float[] stop = {3F, 0F};
+        assertEquals(8.5, classUnderTest.findTimeDifference(start, stop), .01F);
     }
     
     @Test public void testConvertTime1() {

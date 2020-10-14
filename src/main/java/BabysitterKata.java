@@ -1,13 +1,17 @@
 public class BabysitterKata {
-    public float findTimeDifference(float startHour, float startMinute, float stopHour, float stopMinute) {
-    	float tempStartHour = startHour;
-    	float tempStartMinute = startMinute/60;
-    	float tempStopHour = stopHour;
-    	float tempStopMinute = stopMinute/60;
-    	if (startHour <= 4) {
+	
+	//Used to find the difference between two different times.
+	//Start and Stop should both be 2 variable arrays where the first element
+	//represents hours and the second represents minutes.
+    public float findTimeDifference(float[] start, float[] stop) {
+    	float tempStartHour = start[0];
+    	float tempStartMinute = start[1]/60;
+    	float tempStopHour = stop[0];
+    	float tempStopMinute = stop[1]/60;
+    	if (start[0] <= 4) {
     		tempStartHour += 12;
     	}
-    	if (stopHour <= 4) {
+    	if (stop[0] <= 4) {
     		tempStopHour += 12;
     	}
     	float difference = (tempStopHour + tempStopMinute) - (tempStartHour + tempStartMinute);
@@ -32,9 +36,10 @@ public class BabysitterKata {
     	float[] convertedStart = convertTime(startTime);
     	float[] convertedStop = convertTime(stopTime);
     	float[] convertedBed = convertTime(bedTime);
-    	float startToBed = findTimeDifference(convertedStart[0], convertedStart[1], convertedBed[0], convertedBed[1]);
-    	float bedToMid = findTimeDifference(convertedBed[0], convertedBed[1], 0F, 0F);
-    	float midToStop = findTimeDifference(0F, 0F, convertedStop[0], convertedStop[1]);
+    	float[] midnight = {0F, 0F};
+    	float startToBed = findTimeDifference(convertedStart, convertedBed);
+    	float bedToMid = findTimeDifference(convertedBed, midnight);
+    	float midToStop = findTimeDifference(midnight, convertedStop);
     	float charge = startToBed * 12F + bedToMid * 8F + midToStop * 16F;
     	return charge;
     }
@@ -42,7 +47,7 @@ public class BabysitterKata {
     public float calculateNightlyCharge(float startTime, float stopTime) {
     	float[] convertedStart = convertTime(startTime);
     	float[] convertedStop = convertTime(stopTime);
-    	float startToStop = findTimeDifference(convertedStart[0], convertedStart[1], convertedStop[0], convertedStop[1]);
+    	float startToStop = findTimeDifference(convertedStart, convertedStop);
     	float charge = startToStop * 12F;
     	return charge;
     }
