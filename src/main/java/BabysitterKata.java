@@ -38,4 +38,12 @@ public class BabysitterKata {
     	float charge = startToBed * 12F + bedToMid * 8F + midToStop * 16F;
     	return charge;
     }
+    
+    public float calculateNightlyCharge(float startTime, float stopTime) {
+    	float[] convertedStart = convertTime(startTime);
+    	float[] convertedStop = convertTime(stopTime);
+    	float startToStop = findTimeDifference(convertedStart[0], convertedStart[1], convertedStop[0], convertedStop[1]);
+    	float charge = startToStop * 12F;
+    	return charge;
+    }
 }
