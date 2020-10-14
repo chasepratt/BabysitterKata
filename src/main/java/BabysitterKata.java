@@ -28,7 +28,14 @@ public class BabysitterKata {
     	return temp;
     }
     
-    public float calculateNightlyChargeWithBedtime (float startTime, float stopHour, float bedTime) {
-    	return 0;
+    public float calculateNightlyChargeWithBedtime (float startTime, float stopTime, float bedTime) {
+    	float[] convertedStart = convertTime(startTime);
+    	float[] convertedStop = convertTime(stopTime);
+    	float[] convertedBed = convertTime(bedTime);
+    	float startToBed = findTimeDifference(convertedStart[0], convertedStart[1], convertedBed[0], convertedBed[1]);
+    	float bedToMid = findTimeDifference(convertedBed[0], convertedBed[1], 0F, 0F);
+    	float midToStop = findTimeDifference(0F, 0F, convertedStop[0], convertedStop[1]);
+    	float charge = startToBed * 12F + bedToMid * 8F + midToStop * 16F;
+    	return charge;
     }
 }
