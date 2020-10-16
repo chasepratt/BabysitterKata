@@ -1,9 +1,8 @@
 public class BabysitterKata {
-	
 	//Used to find the difference between two different times.
 	//Start and Stop should both be 2 variable arrays where the first element
 	//represents hours and the second represents minutes.
-    public float findTimeDifference(float[] start, float[] stop) {
+    static float findTimeDifference(float[] start, float[] stop) {
     	float tempStartHour = start[0];
     	float tempStartMinute = start[1]/60;
     	float tempStopHour = stop[0];
@@ -20,7 +19,7 @@ public class BabysitterKata {
     
     //Converts a time float into an array where hours are in the first
     //position and minutes are in the second.
-    public float[] convertTime(String time) {
+    static float[] convertTime(String time) {
     	float[] temp = new float[2];
     	String[] splitTime = time.split("[:]");
     	if (splitTime[1].length() == 0) {
@@ -35,7 +34,7 @@ public class BabysitterKata {
     
     //Calculates the charge for a night with a bedtime included. Assumes that bedtime should be
     //before or at midnight.
-    public float calculateNightlyChargeWithBedtime(String startTime, String stopTime, String bedTime) {
+    static float calculateNightlyChargeWithBedtime(String startTime, String stopTime, String bedTime) {
     	float[] convertedStart = convertTime(startTime);
     	float[] convertedStop = convertTime(stopTime);
     	float[] convertedBed = convertTime(bedTime);
@@ -49,11 +48,15 @@ public class BabysitterKata {
     
     //Calculates the charge for a night without a bedtime included. Assumes that the end time
     //will be before or at midnight.
-    public float calculateNightlyCharge(String startTime, String stopTime) {
+    static float calculateNightlyCharge(String startTime, String stopTime) {
     	float[] convertedStart = convertTime(startTime);
     	float[] convertedStop = convertTime(stopTime);
     	float startToStop = findTimeDifference(convertedStart, convertedStop);
     	float charge = startToStop * 12F;
     	return charge;
     }
+    
+	public static void main(String[] args) {
+		float charge = calculateNightlyChargeWithBedtime("", "", "");
+	}
 }
