@@ -57,6 +57,7 @@ public class BabysitterKata {
     }
     
 	public static void main(String[] args) {
-		float charge = calculateNightlyChargeWithBedtime("", "", "");
+		//float charge = calculateNightlyChargeWithBedtime("", "", "");
+		System.out.println("test");
 	}
 }
