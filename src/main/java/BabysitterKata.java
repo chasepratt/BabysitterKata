@@ -20,10 +20,9 @@ public class BabysitterKata {
     
     //Converts a time float into an array where hours are in the first
     //position and minutes are in the second.
-    public float[] convertTime(float time) {
+    public float[] convertTime(String time) {
     	float[] temp = new float[2];
-    	String timeString = String.valueOf(time);
-    	String[] splitTime = timeString.split("[.]");
+    	String[] splitTime = time.split("[:]");
     	if (splitTime[1].length() == 0) {
     		splitTime[1] = "0";
     	} else if (splitTime[1].length() == 1) {
@@ -36,7 +35,7 @@ public class BabysitterKata {
     
     //Calculates the charge for a night with a bedtime included. Assumes that bedtime should be
     //before or at midnight.
-    public float calculateNightlyChargeWithBedtime(float startTime, float stopTime, float bedTime) {
+    public float calculateNightlyChargeWithBedtime(String startTime, String stopTime, String bedTime) {
     	float[] convertedStart = convertTime(startTime);
     	float[] convertedStop = convertTime(stopTime);
     	float[] convertedBed = convertTime(bedTime);
@@ -50,7 +49,7 @@ public class BabysitterKata {
     
     //Calculates the charge for a night without a bedtime included. Assumes that the end time
     //will be before or at midnight.
-    public float calculateNightlyCharge(float startTime, float stopTime) {
+    public float calculateNightlyCharge(String startTime, String stopTime) {
     	float[] convertedStart = convertTime(startTime);
     	float[] convertedStop = convertTime(stopTime);
     	float startToStop = findTimeDifference(convertedStart, convertedStop);
