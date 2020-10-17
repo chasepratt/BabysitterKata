@@ -29,8 +29,8 @@ dependencies {
 }
 
 task runWithJavaExec(type: JavaExec) {
-	main = project.hasProperty("mainClass") ? getProperty("mainClass") : "NULL"
 	classpath = sourceSets.main.runtimeClasspath
+	main = 'BabysitterKata'
 	if (project.hasProperty('myargs')) {
         args(myargs.split(","))
     }
