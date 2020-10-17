@@ -57,7 +57,11 @@ public class BabysitterKata {
     }
     
 	public static void main(String[] args) {
-		//float charge = calculateNightlyChargeWithBedtime("", "", "");
+		if (args.length <= 1 || args.length > 3) {
+			System.out.println("\nError: incorrect number of inputs\n");
+			System.out.println(args[0]);
+			System.exit(1);
+		}
 		System.out.println("test");
 	}
 }
