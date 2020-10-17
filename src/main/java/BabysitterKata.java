@@ -39,29 +39,48 @@ public class BabysitterKata {
     	float[] convertedStop = convertTime(stopTime);
     	float[] convertedBed = convertTime(bedTime);
     	float[] midnight = {0F, 0F};
-    	float startToBed = findTimeDifference(convertedStart, convertedBed);
-    	float bedToMid = findTimeDifference(convertedBed, midnight);
-    	float midToStop = findTimeDifference(midnight, convertedStop);
-    	float charge = startToBed * 12F + bedToMid * 8F + midToStop * 16F;
+    	float charge = 0F;
+    	if (convertedStop[0] <= 4) {
+    		//if stop is after midnight then after midnight cost is needed
+    		float startToBed = findTimeDifference(convertedStart, convertedBed);
+        	float bedToMid = findTimeDifference(convertedBed, midnight);
+        	float midToStop = findTimeDifference(midnight, convertedStop);
+        	charge = startToBed * 12F + bedToMid * 8F + midToStop * 16F;
+    	} else {
+    		float startToBed = findTimeDifference(convertedStart, convertedBed);
+    		float bedToStop = findTimeDifference(convertedBed, convertedStop);
+    		charge = startToBed * 12F + bedToStop * 8F;
+    	}
     	return charge;
     }
     
-    //Calculates the charge for a night without a bedtime included. Assumes that the end time
-    //will be before or at midnight.
+    //Calculates the charge for a night without a bedtime included.
     static float calculateNightlyCharge(String startTime, String stopTime) {
     	float[] convertedStart = convertTime(startTime);
     	float[] convertedStop = convertTime(stopTime);
-    	float startToStop = findTimeDifference(convertedStart, convertedStop);
-    	float charge = startToStop * 12F;
+    	float[] midnight = {0F, 0F};
+    	float charge = 0F;
+    	if (convertedStop[0] <= 4) {
+    		float startToMid = findTimeDifference(convertedStart, midnight);
+    		float midToStop = findTimeDifference(midnight, convertedStop);
+    		charge = startToMid * 12F + midToStop * 16F;
+    	} else {
+    		float startToStop = findTimeDifference(convertedStart, convertedStop);
+    		charge = startToStop * 12F;
+    	}
     	return charge;
     }
     
 	public static void main(String[] args) {
+		float charge = 0F;
 		if (args.length <= 1 || args.length > 3) {
-			System.out.println("\nError: incorrect number of inputs\n");
-			System.out.println(args[0]);
+			System.out.println("\nError: Incorrect number of inputs\n");
 			System.exit(1);
+		} else if (args.length == 2) {
+			charge = calculateNightlyCharge(args[0],args[1]);
+		} else if (args.length == 3) {
+			charge = calculateNightlyChargeWithBedtime(args[0],args[1], args[2]);
 		}
-		System.out.println("test");
+		System.out.println("\nThe charge for the night is $" + charge);
 	}
 }
