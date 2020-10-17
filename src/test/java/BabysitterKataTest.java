@@ -27,26 +27,26 @@ public class BabysitterKataTest {
     }
     
     @Test public void testCalculateNightlyChargeWithBedtime1() {
-        assertEquals(36, BabysitterKata.calculateNightlyChargeWithBedtime("10:0", "1:0", "11:0"), .01F);
+        assertEquals(36, BabysitterKata.calculateNightlyChargeWithBedtime("10:00", "1:00", "11:00"), .01F);
     }
     
     @Test public void testCalculateNightlyChargeWithBedtime2() {
-        assertEquals(64, BabysitterKata.calculateNightlyChargeWithBedtime("5:0", "11:0", "9:0"), .01F);
+        assertEquals(64, BabysitterKata.calculateNightlyChargeWithBedtime("5:00", "11:00", "9:00"), .01F);
     }
     
     @Test public void testCalculateNightlyChargeWithBedtime3() {
-        assertEquals(32, BabysitterKata.calculateNightlyChargeWithBedtime("10:0", "1:0", "10:0"), .01F);
+        assertEquals(32, BabysitterKata.calculateNightlyChargeWithBedtime("10:00", "1:00", "10:00"), .01F);
     }
     
     @Test public void testCalculateNightlyCharge1() {
-        assertEquals(36, BabysitterKata.calculateNightlyCharge("5:0", "8:0"), .01F);
+        assertEquals(36, BabysitterKata.calculateNightlyCharge("5:00", "8:00"), .01F);
     }
     
     @Test public void testCalculateNightlyCharge2() {
-        assertEquals(132, BabysitterKata.calculateNightlyCharge("5:0", "3:0"), .01F);
+        assertEquals(132, BabysitterKata.calculateNightlyCharge("5:00", "3:00"), .01F);
     }
     
     @Test public void testCalculateNightlyCharge3() {
-        assertEquals(0, BabysitterKata.calculateNightlyCharge("5:0", "5:0"), .01F);
+        assertEquals(0, BabysitterKata.calculateNightlyCharge("5:00", "5:00"), .01F);
     }
 }

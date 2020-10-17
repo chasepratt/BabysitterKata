@@ -1,7 +1,7 @@
 This project requires gradle, a java runtime environment (JRE), and a java development kit (JDK) to already be installed.
 The JRE and JDK need to have matching versions.
 
-Inputs to this program need to follow the following rules or there may be potentially incorrect results.
+Inputs to this program need to adhere the following rules or there may be potentially incorrect results.
 The start time will always be before midnight.
 If there is a bedtime, it will be before or at midnight.
 Bed times must also be after or at start time and before or at end time.
@@ -18,6 +18,10 @@ An example of this command would be:
 
 gradle run -Pmyargs=5:00,3:00,8:00
 
+The charge for the night is $116.0
+
 An example without a bedtime would be:
 
 gradle run -Pmyargs=5:00,3:00
+
+The charge for the night is $132.0
