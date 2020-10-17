@@ -47,10 +47,38 @@ public class BabysitterKata {
     		float startToBed = findTimeDifference(convertedStart, convertedBed);
         	float bedToMid = findTimeDifference(convertedBed, midnight);
         	float midToStop = findTimeDifference(midnight, convertedStop);
+        	float totalTime = findTimeDifference(convertedStart, convertedStop);
+    		int chargeableTime = (int) totalTime;
+    		float difference = totalTime - chargeableTime;
+    		//Remove time so the charge is only for full hours
+    		if (midToStop < difference) {
+    			difference -= midToStop;
+    			midToStop = 0;
+    			if (bedToMid < difference) {
+    				difference -= bedToMid;
+    				bedToMid = 0;
+    				startToBed -= difference;
+    			} else {
+    				bedToMid -= difference;
+    			}
+    		} else {
+    			midToStop -= difference;
+    		}
         	charge = startToBed * 12F + bedToMid * 8F + midToStop * 16F;
     	} else {
     		float startToBed = findTimeDifference(convertedStart, convertedBed);
     		float bedToStop = findTimeDifference(convertedBed, convertedStop);
+    		float totalTime = findTimeDifference(convertedStart, convertedStop);
+    		int chargeableTime = (int) totalTime;
+    		float difference = totalTime - chargeableTime;
+    		//Remove time so the charge is only for full hours
+    		if (bedToStop < difference) {
+    			difference -= bedToStop;
+    			bedToStop = 0;
+    			startToBed -= difference;
+    		} else {
+    			bedToStop -= difference;
+    		}
     		charge = startToBed * 12F + bedToStop * 8F;
     	}
     	return charge;
@@ -65,9 +93,24 @@ public class BabysitterKata {
     	if (convertedStop[0] <= 4) {
     		float startToMid = findTimeDifference(convertedStart, midnight);
     		float midToStop = findTimeDifference(midnight, convertedStop);
+    		float totalTime = findTimeDifference(convertedStart, convertedStop);
+    		int chargeableTime = (int) totalTime;
+    		float difference = totalTime - chargeableTime;
+    		//Remove time so the charge is only for full hours
+    		if (midToStop < difference) {
+    			difference -= midToStop;
+    			midToStop = 0;
+    			startToMid -= difference;
+    		} else {
+    			midToStop -= difference;
+    		}
     		charge = startToMid * 12F + midToStop * 16F;
     	} else {
     		float startToStop = findTimeDifference(convertedStart, convertedStop);
+    		float totalTime = startToStop;
+    		int chargeableTime = (int) totalTime;
+    		float difference = totalTime - chargeableTime;
+    		startToStop -= difference;
     		charge = startToStop * 12F;
     	}
     	return charge;

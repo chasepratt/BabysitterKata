@@ -49,4 +49,12 @@ public class BabysitterKataTest {
     @Test public void testCalculateNightlyCharge3() {
         assertEquals(0, BabysitterKata.calculateNightlyCharge("5:00", "5:00"), .01F);
     }
+    
+    @Test public void testCalculateNightlyCharge4() {
+        assertEquals(12, BabysitterKata.calculateNightlyCharge("11:00", "0:30"), .01F);
+    }
+    
+    @Test public void testCalculateNightlyCharge5() {
+        assertEquals(12.666, BabysitterKata.calculateNightlyCharge("11:10", "0:40"), .01F);
+    }
 }
