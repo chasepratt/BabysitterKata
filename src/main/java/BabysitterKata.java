@@ -51,10 +51,13 @@ public class BabysitterKata {
     		int chargeableTime = (int) totalTime;
     		float difference = totalTime - chargeableTime;
     		//Remove time so the charge is only for full hours
+    		//IE worked 8 hours 45 minutes should only be paid for 8 hours
     		if (midToStop < difference) {
+    			//if difference is more than the time spent from midnight to end, remove time from bed to mid
     			difference -= midToStop;
     			midToStop = 0;
     			if (bedToMid < difference) {
+    				//if difference is still more than the time spent from bed to mid, remove time from start to bed
     				difference -= bedToMid;
     				bedToMid = 0;
     				startToBed -= difference;
@@ -73,6 +76,7 @@ public class BabysitterKata {
     		float difference = totalTime - chargeableTime;
     		//Remove time so the charge is only for full hours
     		if (bedToStop < difference) {
+    			//if difference is more than the time spent from bed to stop, remove time from start to bed
     			difference -= bedToStop;
     			bedToStop = 0;
     			startToBed -= difference;
@@ -98,6 +102,7 @@ public class BabysitterKata {
     		float difference = totalTime - chargeableTime;
     		//Remove time so the charge is only for full hours
     		if (midToStop < difference) {
+    			//if difference is more than the time spent from mid to stop, remove time from start to mid
     			difference -= midToStop;
     			midToStop = 0;
     			startToMid -= difference;
@@ -110,6 +115,7 @@ public class BabysitterKata {
     		float totalTime = startToStop;
     		int chargeableTime = (int) totalTime;
     		float difference = totalTime - chargeableTime;
+    		//Remove time so the charge is only for full hours
     		startToStop -= difference;
     		charge = startToStop * 12F;
     	}
